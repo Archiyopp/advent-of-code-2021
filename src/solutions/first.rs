@@ -3,19 +3,31 @@ use std::collections::VecDeque;
 pub fn first_half_puzzle() {
     let input = advent_of_code::read_file("inputs", "first");
     let mut depth: Option<i32> = None;
-    let mut counter = 0;
-    for line in input.lines() {
-        let new_depth: i32 = match line.trim().parse() {
-            Ok(value) => value,
-            Err(_) => break,
-        };
-        if let Some(depth_value) = depth {
-            if new_depth > depth_value {
-                counter += 1;
+    // let mut counter = 0;
+    // for line in input.lines() {
+    //     let new_depth: i32 = match line.trim().parse() {
+    //         Ok(value) => value,
+    //         Err(_) => break,
+    //     };
+    //     if let Some(depth_value) = depth {
+    //         if new_depth > depth_value {
+    //             counter += 1;
+    //         }
+    //     }
+    //     depth = Some(new_depth);
+    // }
+    let counter = input
+        .lines()
+        .map(|line| line.trim().parse::<i32>().expect("input to be numbers"))
+        .fold(0, |mut counter, new_depth| {
+            if let Some(depth_value) = depth {
+                if new_depth > depth_value {
+                    counter += 1;
+                }
             }
-        }
-        depth = Some(new_depth);
-    }
+            depth = Some(new_depth);
+            counter
+        });
     println!(
         "Day 1: First half: number of depth increments were {}",
         counter
