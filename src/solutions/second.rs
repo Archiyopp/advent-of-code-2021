@@ -9,7 +9,7 @@ struct Position {
 }
 
 impl Position {
-    pub fn new() -> Self {
+    const fn new() -> Self {
         Self { x: 0, y: 0, aim: 0 }
     }
 
@@ -48,15 +48,7 @@ impl Display for Position {
 
 pub fn puzzle() {
     let input = advent_of_code::read_file("inputs", "second");
-    // let mut position = Position::new();
-    // for line in input.lines() {
-    //     let (direction, value) = match line.trim().split_once(' ') {
-    //         Some(ins) => ins,
-    //         None => break,
-    //     };
-    //     let value: i32 = value.parse().expect("value should be a number");
-    //     position.update_position(direction, value)
-    // }
+
     let position = input
         .lines()
         .map(to_instruction)
@@ -69,7 +61,7 @@ pub fn puzzle() {
         position,
         (position.x * position.aim).abs(),
         (position.x * position.y).abs()
-    )
+    );
 }
 
 fn to_instruction(line: &str) -> Instructions {
