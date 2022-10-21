@@ -1,7 +1,8 @@
 use std::{env, fs};
 
-#[must_use] pub fn read_file(folder: &str, name: &str) -> String {
-    let cwd = env::current_dir().unwrap();
+#[must_use]
+pub fn read_file(folder: &str, name: &str) -> String {
+    let cwd = env::current_dir().expect("To find current directory path");
 
     let filepath = cwd.join("src").join(folder).join(format!("{}.txt", name));
 
