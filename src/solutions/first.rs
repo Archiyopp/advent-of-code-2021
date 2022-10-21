@@ -46,7 +46,7 @@ pub fn second_half_puzzle() {
         let last_value_is_some = depths_array.pop_front().unwrap().is_some();
         depths_array.push_back(Some(new_depth));
 
-        let current_array: Vec<i32> = depths_array.iter().flat_map(|v| v.to_owned()).collect();
+        let current_array: Vec<i32> = depths_array.iter().filter_map(|v| *v).collect();
         let new_sum: i32 = current_array.iter().sum();
         if last_value_is_some && current_array.len() == 3 && new_sum > depth_sum {
             counter += 1;

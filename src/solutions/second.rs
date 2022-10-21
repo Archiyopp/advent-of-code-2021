@@ -9,8 +9,8 @@ struct Position {
 }
 
 impl Position {
-    pub fn new() -> Position {
-        Position { x: 0, y: 0, aim: 0 }
+    pub fn new() -> Self {
+        Self { x: 0, y: 0, aim: 0 }
     }
 
     fn go_forward(&mut self, value: i32) {
